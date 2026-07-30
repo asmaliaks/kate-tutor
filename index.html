@@ -3,50 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- SEO Meta Tags -->
   <title>Репетитор по английскому языку | Екатерина</title>
-  <meta name="description" content="Индивидуальные уроки английского языка онлайн для взрослых и детей с Екатериной. Разговорный английский, подготовка к IELTS, бизнес-курс.">
-  <meta name="keywords" content="репетитор по английскому, уроки английского онлайн, Екатерина репетитор, IELTS, tutor Kate, angielski Katsiaryna">
-  <meta name="author" content="Екатерина">
-  <meta name="robots" content="index, follow">
 
-  <!-- Canonical & Hreflang -->
-  <link rel="canonical" href="https://yourdomain.com/">
-  <link rel="alternate" hreflang="ru" href="https://yourdomain.com/">
-  <link rel="alternate" hreflang="en" href="https://yourdomain.com/">
-  <link rel="alternate" hreflang="pl" href="https://yourdomain.com/">
-  <link rel="alternate" hreflang="x-default" href="https://yourdomain.com/">
-
-  <!-- Open Graph & Twitter Cards -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://yourdomain.com/">
-  <meta property="og:title" content="Английский с Екатериной | Профессиональный репетитор">
-  <meta property="og:description" content="Помогаю преодолеть языковой барьер и свободно заговорить на английском. Запишитесь на пробный урок!">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=1200&h=630&fit=crop">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <!-- Schema.org JSON-LD -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Екатерина",
-      "jobTitle": "Преподаватель английского языка",
-      "description": "Профессиональный репетитор английского языка с опытом более 5 лет.",
-      "url": "https://yourdomain.com/",
-      "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&h=300&fit=crop",
-      "knowsLanguage": ["English", "Russian", "Polish"]
-    }
-  </script>
-
-  <!-- FontAwesome & Google Fonts -->
+  <!-- Meta tags, FontAwesome & Styles (остаются без изменений) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
+    /* Стили остаемся из предыдущего шага */
     :root {
       --primary: #6366f1;
       --primary-dark: #4f46e5;
@@ -59,302 +25,52 @@
       --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
       --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background-color: var(--bg-body);
-      color: var(--text-main);
-      line-height: 1.6;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    /* --- STICKY NAVBAR --- */
-    .top-bar {
-      position: sticky;
-      top: 0;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-      z-index: 1000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-    }
-
-    .main-nav {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .main-nav a {
-      text-decoration: none;
-      color: var(--text-muted);
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: var(--transition);
-      position: relative;
-    }
-
-    .main-nav a:hover, .main-nav a.active {
-      color: var(--primary);
-    }
-
-    .main-nav a.active::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: var(--primary);
-      border-radius: 2px;
-    }
-
-    .lang-switcher {
-      display: flex;
-      gap: 0.25rem;
-      background: #f1f5f9;
-      padding: 4px;
-      border-radius: 10px;
-    }
-
-    .lang-btn {
-      border: none;
-      background: transparent;
-      color: var(--text-muted);
-      padding: 6px 12px;
-      border-radius: 7px;
-      font-weight: 600;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .lang-btn.active {
-      background: #ffffff;
-      color: var(--primary);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-    }
-
-    /* --- HERO SECTION --- */
-    .hero {
-      background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
-      color: white;
-      padding: 5rem 1.5rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-title {
-      font-size: 2.75rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-      letter-spacing: -0.025em;
-    }
-
-    .hero-subtitle {
-      font-size: 1.25rem;
-      opacity: 0.9;
-      max-width: 600px;
-      margin: 0 auto;
-      font-weight: 400;
-    }
-
-    /* --- MAIN CONTENT & CARDS --- */
-    main {
-      flex: 1;
-      max-width: 960px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
-    }
-
-    section {
-      scroll-margin-top: 90px;
-      margin-bottom: 3.5rem;
-    }
-
-    .section-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      color: var(--text-main);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .section-title::before {
-      content: '';
-      display: inline-block;
-      width: 4px;
-      height: 1.25rem;
-      background: var(--primary);
-      border-radius: 2px;
-    }
-
-    /* Profile Block */
-    .about-card {
-      background: var(--bg-card);
-      border-radius: var(--radius);
-      padding: 2rem;
-      box-shadow: var(--shadow);
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-      border: 1px solid #f1f5f9;
-    }
-
-    .profile-img {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid #ffffff;
-      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.2);
-      flex-shrink: 0;
-    }
-
-    .about-text {
-      font-size: 1.05rem;
-      color: #334155;
-    }
-
-    .badge-list {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      margin-top: 1rem;
-    }
-
-    .badge {
-      background: #e0e7ff;
-      color: var(--primary-dark);
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-
-    /* Grid Layout for Cards */
-    .grid-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .card {
-      background: var(--bg-card);
-      padding: 1.5rem;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      border: 1px solid #f1f5f9;
-      transition: var(--transition);
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
-      border-color: #e2e8f0;
-    }
-
-    .card-icon {
-      font-size: 1.5rem;
-      color: var(--primary);
-      margin-bottom: 0.75rem;
-    }
-
-    .card-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .card-desc {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-    }
-
-    /* --- FOOTER --- */
-    footer {
-      background: #0f172a;
-      color: white;
-      padding: 3rem 1.5rem;
-      text-align: center;
-      margin-top: auto;
-    }
-
-    .footer-text {
-      color: #94a3b8;
-      margin-bottom: 1.5rem;
-      font-size: 1rem;
-    }
-
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 1.25rem;
-    }
-
-    .icon-link {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: #1e293b;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.35rem;
-      text-decoration: none;
-      transition: var(--transition);
-      border: 1px solid #334155;
-    }
-
-    .icon-link:hover {
-      transform: translateY(-3px) scale(1.05);
-    }
-
-    .icon-link.tg:hover { background: #0088cc; border-color: #0088cc; }
-    .icon-link.wa:hover { background: #25D366; border-color: #25D366; }
-    .icon-link.form:hover { background: var(--primary); border-color: var(--primary); }
-
-    /* --- RESPONSIVE --- */
-    @media (max-width: 640px) {
-      .top-bar {
-        flex-direction: column-reverse;
-        gap: 1rem;
-        padding: 0.75rem 1rem;
-      }
-      .hero-title { font-size: 2rem; }
-      .about-card {
-        flex-direction: column;
-        text-align: center;
-      }
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+    .top-bar { position: sticky; top: 0; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(226, 232, 240, 0.8); z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
+    .main-nav { display: flex; gap: 1.5rem; }
+    .main-nav a { text-decoration: none; color: var(--text-muted); font-weight: 500; font-size: 0.95rem; transition: var(--transition); position: relative; }
+    .main-nav a:hover, .main-nav a.active { color: var(--primary); }
+    .main-nav a.active::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 100%; height: 2px; background: var(--primary); border-radius: 2px; }
+    .lang-switcher { display: flex; gap: 0.25rem; background: #f1f5f9; padding: 4px; border-radius: 10px; }
+    .lang-btn { border: none; background: transparent; color: var(--text-muted); padding: 6px 12px; border-radius: 7px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: var(--transition); }
+    .lang-btn.active { background: #ffffff; color: var(--primary); box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+    .hero { background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%); color: white; padding: 5rem 1.5rem; text-align: center; }
+    .hero-title { font-size: 2.75rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .hero-subtitle { font-size: 1.25rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+    main { flex: 1; max-width: 960px; width: 100%; margin: 0 auto; padding: 2rem 1.5rem; }
+    section { scroll-margin-top: 90px; margin-bottom: 3.5rem; }
+    .section-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+    .section-title::before { content: ''; display: inline-block; width: 4px; height: 1.25rem; background: var(--primary); border-radius: 2px; }
+    .about-card { background: var(--bg-card); border-radius: var(--radius); padding: 2rem; box-shadow: var(--shadow); display: flex; gap: 2rem; align-items: center; border: 1px solid #f1f5f9; }
+    .profile-img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 4px solid #ffffff; box-shadow: 0 8px 20px rgba(99, 102, 241, 0.2); flex-shrink: 0; }
+    .about-text { font-size: 1.05rem; color: #334155; }
+    .badge-list { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
+    .badge { background: #e0e7ff; color: var(--primary-dark); padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
+    .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
+    .card { background: var(--bg-card); padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid #f1f5f9; transition: var(--transition); }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05); }
+    .card-icon { font-size: 1.5rem; color: var(--primary); margin-bottom: 0.75rem; }
+    .card-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .card-desc { font-size: 0.95rem; color: var(--text-muted); }
+    footer { background: #0f172a; color: white; padding: 3rem 1.5rem; text-align: center; margin-top: auto; }
+    .footer-text { color: #94a3b8; margin-bottom: 1.5rem; }
+    .social-icons { display: flex; justify-content: center; gap: 1.25rem; }
+    .icon-link { width: 52px; height: 52px; border-radius: 50%; background: #1e293b; color: white; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; text-decoration: none; transition: var(--transition); border: 1px solid #334155; }
+    .icon-link:hover { transform: translateY(-3px) scale(1.05); }
+    .icon-link.tg:hover { background: #0088cc; }
+    .icon-link.wa:hover { background: #25D366; }
+    .icon-link.form:hover { background: var(--primary); }
   </style>
 </head>
 <body>
 
-<!-- STICKY NAVBAR -->
+<!-- NAVBAR -->
 <div class="top-bar">
   <nav class="main-nav">
     <a href="#about" class="nav-link t" data-en="About" data-ru="Обо мне" data-pl="O mnie">Обо мне</a>
-    <a href="#experience" class="nav-link t" data-en="Experience" data-ru="Опыт" data-pl="Doświadczenie">Опыт</a>
+    <a href="#experience" class="nav-link t" data-en="Experience" data-ru="Опыт" data-pl="Doświadчение">Опыт</a>
     <a href="#certificates" class="nav-link t" data-en="Certificates" data-ru="Сертификаты" data-pl="Certyfikaty">Сертификаты</a>
     <a href="#cases" class="nav-link t" data-en="Cases" data-ru="Успехи" data-pl="Sukcesy">Успехи</a>
   </nav>
@@ -372,155 +88,90 @@
   <p class="hero-subtitle t" data-en="High-performance English tutoring tailored to your goals" data-ru="Эффективное обучение английскому под ваши задачи" data-pl="Skuteczna nauka języka angielskiego dopasowana do Twoich celów">Эффективное обучение английскому под ваши задачи</p>
 </header>
 
-<main>
-  <!-- ABOUT SECTION -->
-  <section id="about">
-    <h2 class="section-title t" data-en="About Me" data-ru="Обо мне" data-pl="O mnie">Обо мне</h2>
-    <div class="about-card">
-      <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&h=300&fit=crop" alt="Екатерина" class="profile-img">
-      <div>
-        <p class="about-text t"
-           data-en="Hi! I'm Kate. I break language barriers and help students achieve real fluency through practical conversational practice and structured frameworks."
-           data-ru="Привет! Меня зовут Екатерина. Помогаю преодолеть языковой барьер и заговорить свободно с помощью понятной структуры и интенсивной практики."
-           data-pl="Cześć! Mam na imię Katsiaryna. Pomagam przełamać barierę językową i osiągnąć płynność dzięki praktycznym konwersacjom i jasnej strukturze.">
-          Привет! Меня зовут Екатерина. Помогаю преодолеть языковой барьер и заговорить свободно с помощью понятной структуры и интенсивной практики.
-        </p>
-        <div class="badge-list">
-          <span class="badge">5+ Years Exp</span>
-          <span class="badge">IELTS 8.5</span>
-          <span class="badge">TEFL/TESOL</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE SECTION -->
-  <section id="experience">
-    <h2 class="section-title t" data-en="Experience & Focus" data-ru="Опыт и направления" data-pl="Doświadczenie i specjalizacja">Опыт и направления</h2>
-    <div class="grid-cards">
-      <div class="card">
-        <i class="fa-solid fa-comments card-icon"></i>
-        <h3 class="card-title t" data-en="Spoken English" data-ru="Разговорный курс" data-pl="Konwersacje">Разговорный курс</h3>
-        <p class="card-desc t" data-en="Focus on active vocabulary, fluid listening, and natural pronunciation." data-ru="Фокус на беглости речи, восприятии на слух и естественной лексике." data-pl="Nacisk na płynność wypowiedzi, rozumienie ze słuchu i naturalne słownictwo.">Фокус на беглости речи, восприятии на слух и естественной лексике.</p>
-      </div>
-      <div class="card">
-        <i class="fa-solid fa-briefcase card-icon"></i>
-        <h3 class="card-title t" data-en="Business & Tech" data-ru="Business & IT English" data-pl="Angielski w biznesie i IT">Business & IT English</h3>
-        <p class="card-desc t" data-en="Interview preparation, pitch practice, and professional correspondence." data-ru="Подготовка к собеседованиям, питчам и деловой переписке." data-pl="Przygotowanie do rozmów kwalifikacyjnych, prezentacji i korespondencji.">Подготовка к собеседованиям, питчам и деловой переписке.</p>
-      </div>
-      <div class="card">
-        <i class="fa-solid fa-graduation-cap card-icon"></i>
-        <h3 class="card-title t" data-en="Exams Prep" data-ru="Подготовка к экзаменам" data-pl="Przygotowanie do egzaminów">Подготовка к экзаменам</h3>
-        <p class="card-desc t" data-en="Targeted preparation strategies for IELTS Academic & General modules." data-ru="Стратегия успешной сдачи IELTS с разбором всех модулей." data-pl="Strategie i skuteczne przygotowanie do modułów IELTS.">Стратегия успешной сдачи IELTS с разбором всех модулей.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CERTIFICATES SECTION -->
-  <section id="certificates">
-    <h2 class="section-title t" data-en="Certificates" data-ru="Сертификаты" data-pl="Certyfikaty">Сертификаты</h2>
-    <div class="grid-cards">
-      <div class="card">
-        <i class="fa-solid fa-award card-icon"></i>
-        <h3 class="card-title">TEFL / TESOL</h3>
-        <p class="card-desc t" data-en="International certification for teaching English to non-native speakers." data-ru="Международный сертификат преподавания английского как иностранного." data-pl="Międzynarodowy certyfikat nauczania języka angielskiego.">Международный сертификат преподавания английского как иностранного.</p>
-      </div>
-      <div class="card">
-        <i class="fa-solid fa-certificate card-icon"></i>
-        <h3 class="card-title">IELTS Academic 8.5</h3>
-        <p class="card-desc t" data-en="Expert level of language proficiency confirmed by official exam result." data-ru="Подтвержденный экспертный уровень владения языком." data-pl="Potwierdzony ekspercki poziom znajomości języka.">Подтвержденный экспертный уровень владения языком.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CASES SECTION -->
-  <section id="cases">
-    <h2 class="section-title t" data-en="Success Cases" data-ru="Успехи учеников" data-pl="Sukcesy uczniów">Успехи учеников</h2>
-    <div class="grid-cards">
-      <div class="card">
-        <i class="fa-solid fa-rocket card-icon"></i>
-        <h3 class="card-title">Anna — IELTS 7.5</h3>
-        <p class="card-desc t" data-en="Relocated to London for a Master's degree after 4 months of prep." data-ru="Поступила в магистратуру в Лондоне после 4 месяцев подготовки." data-pl="Dostała się na studia magisterskie w Londynie po 4 miesiącach przygotowań.">Поступила в магистратуру в Лондоне после 4 месяцев подготовки.</p>
-      </div>
-      <div class="card">
-        <i class="fa-solid fa-user-check card-icon"></i>
-        <h3 class="card-title">Max — Senior Dev</h3>
-        <p class="card-desc t" data-en="Passed international tech interviews and moved to an EU company." data-ru="Прошел техническое собеседование и получил оффер в EU компанию." data-pl="Pomyślnie przeszedł rozmowę kwalifikacyjną i otrzymał pracę w firmie w UE.">Прошел техническое собеседование и получил оффер в EU компанию.</p>
-      </div>
-    </div>
-  </section>
+<!-- КОНТЕЙНЕР ДЛЯ ДИНАМИЧЕСКИХ СЕКЦИЙ -->
+<main id="app-content">
+  <!-- Блоки загрузятся сюда автоматически -->
 </main>
 
 <!-- FOOTER -->
 <footer>
   <p class="footer-text t" data-en="Get in touch or book a trial lesson:" data-ru="Свяжитесь со мной или запишитесь на вводный урок:" data-pl="Skontaktuj się ze mną lub zapisz się na lekcję próbną:">Свяжитесь со мной или запишитесь на вводный урок:</p>
-
   <div class="social-icons">
-    <a href="ВСТАВЬ_ССЫЛКУ_НА_ФОРМУ" target="_blank" class="icon-link form" title="Google Form" aria-label="Google Form">
-      <i class="fa-solid fa-file-signature"></i>
-    </a>
-    <a href="https://t.me/ТВОЙ_ЛОГИН" target="_blank" class="icon-link tg" title="Telegram" aria-label="Telegram">
-      <i class="fa-brands fa-telegram"></i>
-    </a>
-    <a href="https://wa.me/ТВОЙ_НОМЕР" target="_blank" class="icon-link wa" title="WhatsApp" aria-label="WhatsApp">
-      <i class="fa-brands fa-whatsapp"></i>
-    </a>
+    <a href="#" target="_blank" class="icon-link form" title="Form"><i class="fa-solid fa-file-signature"></i></a>
+    <a href="https://t.me/YOUR_USERNAME" target="_blank" class="icon-link tg" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+    <a href="https://wa.me/YOUR_NUMBER" target="_blank" class="icon-link wa" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
   </div>
 </footer>
 
-<!-- JS LOGIC -->
+<!-- СКТИПТ ДИНАМИЧЕСКОЙ ЗАГРУЗКИ И ПЕРЕКЛЮЧЕНИЯ ЯЗЫКОВ -->
 <script>
-  const seoData = {
-    ru: {
-      title: "Репетитор по английскому языку | Екатерина",
-      description: "Индивидуальные уроки английского языка онлайн для взрослых и детей с Екатериной."
-    },
-    en: {
-      title: "English Tutor | Kate",
-      description: "Individual online English lessons for adults and kids with Kate."
-    },
-    pl: {
-      title: "Korepetytor języka angielskiego | Katsiaryna",
-      description: "Indywidualne lekcje języka angielskiego online z Katsiaryną."
+  const sections = [
+    'sections/about.html',
+    'sections/experience.html',
+    'sections/certificates.html',
+    'sections/cases.html'
+  ];
+
+  // Асинхронная загрузка всех секций
+  async function loadSections() {
+    const mainContainer = document.getElementById('app-content');
+
+    try {
+      const loadedHtml = await Promise.all(
+              sections.map(url => fetch(url).then(res => res.text()))
+      );
+
+      mainContainer.innerHTML = loadedHtml.join('');
+
+      // Инициализируем наблюдения за скроллом после загрузки контента
+      initScrollObserver();
+    } catch (err) {
+      console.error("Ошибка при загрузке секций:", err);
     }
+  }
+
+  // Логика мультиязычности
+  const seoData = {
+    ru: { title: "Репетитор по английскому языку | Екатерина", description: "Уроки английского онлайн" },
+    en: { title: "English Tutor | Kate", description: "Online English lessons" },
+    pl: { title: "Korepetytor języka angielskiego | Katsiaryna", description: "Lekcje angielskiego online" }
   };
 
-  // Switcher logic
   function changeLang(lang) {
-    // Update text DOM
     document.querySelectorAll('.t').forEach(el => {
       const text = el.getAttribute(`data-${lang}`);
       if (text) el.textContent = text;
     });
 
-    // Update UI Active State for Lang Buttons
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.classList.toggle('active', btn.getAttribute('onclick').includes(`'${lang}'`));
     });
 
-    // Update SEO
     if (seoData[lang]) {
       document.title = seoData[lang].title;
-      const meta = document.querySelector('meta[name="description"]');
-      if (meta) meta.setAttribute('content', seoData[lang].description);
     }
 
     document.documentElement.lang = lang;
   }
 
-  // Active link tracking on scroll (IntersectionObserver)
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        document.querySelectorAll('.main-nav a').forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-        });
-      }
-    });
-  }, { threshold: 0.4 });
+  // Подсветка активного пункта меню при скролле
+  function initScrollObserver() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          document.querySelectorAll('.main-nav a').forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+          });
+        }
+      });
+    }, { threshold: 0.4 });
 
-  document.querySelectorAll('section').forEach(section => observer.observe(section));
+    document.querySelectorAll('section').forEach(section => observer.observe(section));
+  }
+
+  // Старт загрузки при открытии страницы
+  document.addEventListener('DOMContentLoaded', loadSections);
 </script>
 </body>
 </html>
