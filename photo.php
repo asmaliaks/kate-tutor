@@ -43,6 +43,6 @@ if (file_exists($photoPath) && filesize($photoPath) > 0) {
 
     echo json_encode([
         'success' => false,
-        'error'   => 'Не удалось сделать снимок. Ошибка: ' . trim($output)
+        'error'   => 'Не атрымалася зрабіць фота. Памылка: ' . trim($output)
     ], JSON_UNESCAPED_UNICODE);
 }

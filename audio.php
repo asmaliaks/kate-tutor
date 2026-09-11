@@ -39,6 +39,6 @@ if (file_exists($audioPath) && filesize($audioPath) > 0) {
 
     echo json_encode([
         'success' => false,
-        'error'   => 'Файл аудио не сформировался или пуст.'
+        'error'   => 'Файл аўдыё не сфарміраваўся ці пусты.'
     ], JSON_UNESCAPED_UNICODE);
 }

@@ -42,16 +42,16 @@ if (isset($update['message'])) {
             $data = json_decode(trim($jsonResponse), true);
 
             if (isset($data['success']) && $data['success'] === true) {
-                $replyText  = "🔋 *Статус аккумулятора:*\n\n";
-                $replyText .= "Заряд батареи: " . $data['percentage'] . "%\n";
+                $replyText  = "🔋 *Статус аккумулятара:*\n\n";
+                $replyText .= "Зарад батарэі: " . $data['percentage'] . "%\n";
                 $replyText .= "Статус: " . $data['status'] . "\n";
-                $replyText .= "Температура: " . $data['temperature'] . "°C";
+                $replyText .= "Тэмпература: " . $data['temperature'] . "°C";
             } else {
-                $errorInfo  = $data['error'] ?? "Вывод скрипта:\n`" . trim($jsonResponse) . "`";
-                $replyText  = "⚠️ *Ошибка при получении данных:*\n" . $errorInfo;
+                $errorInfo  = $data['error'] ?? "Вывад скрыпта:\n`" . trim($jsonResponse) . "`";
+                $replyText  = "⚠️ *Памылка пры атрыманні дадзеных:*\n" . $errorInfo;
             }
         } else {
-            $replyText = "❌ Ошибка: `shell_exec` вернул пустой результат";
+            $replyText = "❌ Памылка: `shell_exec` вярнуў пусты рэзультат";
         }
 
         sendTelegramMessage($token, $chatId, $replyText);
@@ -60,7 +60,7 @@ if (isset($update['message'])) {
     // --- Команды для снимков с камер ---
     if ($text === '/photo_back' || $text === '/photo_front' || $text === '/photo') {
         $cameraId = ($text === '/photo_front') ? 1 : 0;
-        $caption  = ($cameraId === 1) ? "📸 Снимок с передней камеры" : "📸 Снимок с задней камеры";
+        $caption  = ($cameraId === 1) ? "📸 Здымак з пярэдней камеры" : "📸 Здымак з задняй камеры";
 
         processPhotoRequest($token, $chatId, $phpBin, $photoPathScript, $cameraId, $caption);
     }
@@ -73,8 +73,8 @@ if (isset($update['message'])) {
             $duration = 30;
         }
 
-        $caption = "🎙 *Голосовое сообщение* ({$duration} сек.)";
-        sendTelegramMessage($token, $chatId, "🎙 Начинаю запись аудио ({$duration} сек)...");
+        $caption = "🎙 *Галасавое паведамленне* ({$duration} сек.)";
+        sendTelegramMessage($token, $chatId, "🎙 Пачынаю запіс аўдыё ({$duration} сек)...");
 
         processAudioRequest($token, $chatId, $phpBin, $audioPathScript, $duration, $caption);
     }
@@ -90,10 +90,10 @@ if (isset($update['message'])) {
 
         $output = shell_exec($env . 'termux-torch ' . $state . ' 2>&1');
 
-        $replyText = ($state === 'on') ? "💡 Фонарик включен" : "🔦 Фонарик выключен";
+        $replyText = ($state === 'on') ? "💡 Ліхтарых уключаны" : "🔦 Ліхтарык выключаны";
 
         if ($output !== null && trim($output) !== '') {
-            $replyText .= "\n⚠️ Ответ утилиты: `" . trim($output) . "`";
+            $replyText .= "\n⚠️ Адказ уціліты: `" . trim($output) . "`";
         }
 
         sendTelegramMessage($token, $chatId, $replyText);
@@ -119,7 +119,7 @@ if (isset($update['message'])) {
 
         $res = file_get_contents("https://api.telegram.org/bot$token/setMyCommands?commands=" . urlencode(json_encode($cmds)) . "&scope=" . urlencode($scope));
 
-        sendTelegramMessage($token,$chatId, "Ответ API: " . $res);
+        sendTelegramMessage($token,$chatId, "Адказ API: " . $res);
     }
 }
 

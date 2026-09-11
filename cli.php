@@ -17,7 +17,7 @@ $output = shell_exec($command);
 if ($output === null) {
     echo json_encode([
         'success' => false,
-        'error'   => 'Не удалось выполнить команду shell_exec.'
+        'error'   => 'Не атрымалася выканаць каманду shell_exec.'
     ], JSON_UNESCAPED_UNICODE);
     exit;
 }
@@ -29,13 +29,13 @@ if (json_last_error() === JSON_ERROR_NONE) {
     echo json_encode([
         'success'     => true,
         'percentage'  => $batteryData['percentage'] ?? 0,
-        'status'      => $batteryData['status'] ?? 'неизвестно',
+        'status'      => $batteryData['status'] ?? 'невядома',
         'temperature' => $batteryData['temperature'] ?? 0
     ], JSON_UNESCAPED_UNICODE);
 } else {
     // Если команда вернула ошибку вместо JSON
     echo json_encode([
         'success' => false,
-        'error'   => 'Ошибка выполнения команды: ' . $output
+        'error'   => 'Памылка выканання каманды: ' . $output
     ], JSON_UNESCAPED_UNICODE);
 }
