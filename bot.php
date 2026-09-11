@@ -98,6 +98,27 @@ if (isset($update['message'])) {
 
         sendTelegramMessage($token, $chatId, $replyText);
     }
+
+     // --- Разовая инициализация меню ---
+    if ($text === '/init_menu') {
+        $cmds = [
+            ['command' => 'status', 'description' => 'Battery status'],
+            ['command' => 'photo', 'description' => 'Take photo'],
+            ['command' => 'photo_back', 'description' => 'Back camera photo'],
+            ['command' => 'photo_front', 'description' => 'Front camera photo'],
+            ['command' => 'vrecord_30', 'description' => 'Record audio 30 sec'],
+            ['command' => 'vrecord_90', 'description' => 'Record audio 90 sec'],
+            ['command' => 'vrecord_180', 'description' => 'Record audio 180 sec'],
+            ['command' => 'light_on', 'description' => 'Turn on flashlight'],
+            ['command' => 'light_off', 'description' => 'Turn off flashlight']
+        ];
+
+        file_get_contents("https://api.telegram.org/bot{$token}/deleteMyCommands");
+        file_get_contents("https://api.telegram.org/bot{\(token}/setMyCommands?commands=" . urlencode(json_encode($cmds)));
+        file_get_contents("https://api.telegram.org/bot{$token}/setChatMenuButton?menu_button=" . urlencode(json_encode(['type' => 'commands'])));
+
+        sendTelegramMessage($token,$chatId, "✅ Меню обновлено!");
+    }
 }
 
 /**
