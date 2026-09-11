@@ -1,36 +1,27 @@
 <?php
 /**
- * Скрипт получения статуса аккумулятора в Termux и отправки ответа в формате JSON.
+ * Скрипт создания снимка с выбранной камеры Termux.
  */
 
-// Указываем браузеру и клиенту, что ответ передается в формате JSON
 header('Content-Type: application/json; charset=utf-8');
 
-// 1. Абсолютный путь к утилите Termux
-$termuxBin = 'timeout 3 termux-battery-status /data/data/com.termux/files/usr/bin/termux-battery-status';
-$command = "{$termuxBin} 2>&1";
+// Получаем ID камеры из CLI (0 - задняя, 1 - передняя)
+$cameraId = isset($argv[1]) ? (int)$argv[1] : 0;
 
-// 2. Выполняем команду
+$photoPath = __DIR__ . '/photo_' . time() . '.jpg';
+$termuxBin = '/data/data/com.termux/files/usr/bin/termux-camera-photo';
+
+$command = "timeout 10 {$termuxBin} -c {$cameraId} " . escapeshellarg($photoPath) . " 2>&1";
 $output = shell_exec($command);
 
-// 3. Формируем и отдаем JSON-ответ
-if ($output === null) {
+if (file_exists($photoPath) && filesize($photoPath) > 0) {
     echo json_encode([
-        'success' => false,
-        'error'   => 'Не удалось выполнить команду shell_exec.'
+        'success'    => true,
+        'photo_path' => $photoPath
     ], JSON_UNESCAPED_UNICODE);
-    exit;
-}
-
-$batteryData = json_decode($output, true);
-
-if (json_last_error() === JSON_ERROR_NONE) {
-    // Успешно получили данные от termux-battery-status
-//TODO логика с фотографией
 } else {
-    // Если команда вернула ошибку вместо JSON
     echo json_encode([
         'success' => false,
-        'error'   => 'Ошибка выполнения команды: ' . $output
+        'error'   => 'Не удалось сделать снимок. Ошибка: ' . trim($output)
     ], JSON_UNESCAPED_UNICODE);
 }
