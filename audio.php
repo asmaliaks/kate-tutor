@@ -1,6 +1,6 @@
 <?php
 /**
- * Скрипт записи аудио с микрофона через Termux API.
+ * Скрипт записи аудио с микрофона через Termux API (со синхронным ожиданием).
  */
 
 header('Content-Type: application/json; charset=utf-8');
@@ -15,17 +15,18 @@ $time = time();
 $audioPath = __DIR__ . '/audio_' . $time . '.m4a';
 $termuxBin = '/data/data/com.termux/files/usr/bin/termux-microphone-record';
 
-// Сброс зависших фоновых записей
+// 1. Принудительно останавливаем прошлые записи, если они повисли
 shell_exec("{$termuxBin} -q 2>&1");
-usleep(100000); // 0.1 сек задержка
+usleep(200000);
 
-// Запуск записи аудио
+// 2. Стартуем запись (команда отрабатывает асинхронно)
 $command = "{$termuxBin} -f " . escapeshellarg($audioPath) . " -l {$duration} -e m4a 2>&1";
-$output = shell_exec($command);
+shell_exec($command);
 
-// Задержка на запись файла на диск
-usleep(300000); // 0.3 сек
+// 3. Ждем окончания записи в PHP (длительность + 1 сек на сохранение)
+sleep($duration + 1);
 
+// 4. Проверяем готовый файл
 if (file_exists($audioPath) && filesize($audioPath) > 0) {
     echo json_encode([
         'success'    => true,
@@ -38,6 +39,6 @@ if (file_exists($audioPath) && filesize($audioPath) > 0) {
 
     echo json_encode([
         'success' => false,
-        'error'   => 'Не удалось записать аудио. Ошибка: ' . trim($output)
+        'error'   => 'Файл аудио не сформировался или пуст.'
     ], JSON_UNESCAPED_UNICODE);
 }
