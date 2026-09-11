@@ -208,7 +208,7 @@ function sendTelegramVoice($token, $chatId, $filePath, $caption = '') {
 
     $postFields = [
         'chat_id'    => $chatId,
-        'voice'      => new CURLFile($filePath),
+        'voice'      => new CURLFile($filePath, 'audio/m4a', 'voice.m4a'),
         'caption'    => $caption,
         'parse_mode' => 'Markdown'
     ];
@@ -224,6 +224,10 @@ function sendTelegramVoice($token, $chatId, $filePath, $caption = '') {
     $result = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
+
+    if ($httpCode !== 200) {
+        file_put_contents(__DIR__ . '/error.log', date('Y-m-d H:i:s') . " - Voice error: " . $result . "\n", FILE_APPEND);
+    }
 
     return ($httpCode === 200);
 }
