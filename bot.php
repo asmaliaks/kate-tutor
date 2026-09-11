@@ -79,12 +79,12 @@ if (isset($update['message'])) {
         processAudioRequest($token, $chatId, $phpBin, $audioPathScript, $duration, $caption);
     }
 
-    // --- Команды управления фонариком (/light_on, /light_off) ---
+// --- Команды управления фонариком (/light_on, /light_off) ---
     if ($text === '/light_on' || $text === '/light_off') {
+        $state = ($text === '/light_on') ? 'on' : 'off';
         $torchBin = '/data/data/com.termux/files/usr/bin/termux-torch';
-        $state    = ($text === '/light_on') ? 'on' : 'off';
 
-        shell_exec("{$torchBin} {$state} 2>&1");
+        shell_exec($torchBin . ' ' . $state . ' 2>&1');
 
         $replyText = ($state === 'on') ? "💡 Фонарик включен" : "🔦 Фонарик выключен";
         sendTelegramMessage($token, $chatId, $replyText);
