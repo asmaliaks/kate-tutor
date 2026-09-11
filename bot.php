@@ -82,11 +82,18 @@ if (isset($update['message'])) {
 // --- Команды управления фонариком (/light_on, /light_off) ---
     if ($text === '/light_on' || $text === '/light_off') {
         $state = ($text === '/light_on') ? 'on' : 'off';
-        $torchBin = '/data/data/com.termux/files/usr/bin/termux-torch';
 
-        shell_exec($torchBin . ' ' . $state . ' 2>&1');
+        $env = 'export PATH=/data/data/com.termux/files/usr/bin:$PATH; ' .
+            'export PREFIX=/data/data/com.termux/files/usr; ' .
+            'export TMPDIR=/data/data/com.termux/files/usr/tmp; ';
+
+        $output = trim((string)shell_exec($env . 'termux-torch ' . $state . ' 2>&1'));
 
         $replyText = ($state === 'on') ? "💡 Фонарик включен" : "🔦 Фонарик выключен";
+        if ($output !== '') {
+            $replyText .= "\n⚠️ Ответ утилиты: " . $output;
+        }
+
         sendTelegramMessage($token, $chatId, $replyText);
     }
 }
