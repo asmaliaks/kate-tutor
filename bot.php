@@ -8,10 +8,11 @@ if (function_exists('fastcgi_finish_request')) {
     fastcgi_finish_request();
 }
 
-$token = getenv('BOT_TOKEN') ?: ($_ENV['BOT_TOKEN'] ?? null);
+$env = parse_ini_file(__DIR__ . '/.env');
+$token = $env['BOT_TOKEN'] ?? null;
 
 if (!$token) {
-    die('Ошибка: Переменная окружения BOT_TOKEN не задана');
+    die("Ошибка: BOT_TOKEN не найден в .env");
 }
 
 $input = file_get_contents('php://input');

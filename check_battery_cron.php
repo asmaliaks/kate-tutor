@@ -1,5 +1,10 @@
 <?php
-$token = "517180739:AAEWhNTDdKMdjQe_mOPXmKaHBUpaMjoqrW4";
+$env = parse_ini_file(__DIR__ . '/.env');
+$token = $env['BOT_TOKEN'] ?? null;
+
+if (!$token) {
+    die("Ошибка: BOT_TOKEN не найден в .env");
+}
 $chatId = "88740047";
 $threshold = 30;
 $maxLevel = 100;
