@@ -66,7 +66,7 @@ if (isset($update['message'])) {
     if ($text === '/photo_back' || $text === '/photo_front' || $text === '/photo') {
         $cameraId = ($text === '/photo_front') ? 1 : 0;
         $caption  = ($cameraId === 1) ? "📸 Здымак з пярэдней камеры" : "📸 Здымак з задняй камеры";
-
+        sendTelegramMessage($token, $chatId, "Пачынаю $caption, цярпенне......");
         processPhotoRequest($token, $chatId, $phpBin, $photoPathScript, $cameraId, $caption);
     }
 
