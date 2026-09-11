@@ -7,7 +7,7 @@
 header('Content-Type: application/json; charset=utf-8');
 
 // 1. Абсолютный путь к утилите Termux
-$termuxBin = 'timeout 3 termux-battery-status /data/data/com.termux/files/usr/bin/termux-battery-status';
+$termuxBin = 'timeout 3 /data/data/com.termux/files/usr/bin/termux-battery-status';
 $command = "{$termuxBin} 2>&1";
 
 // 2. Выполняем команду
