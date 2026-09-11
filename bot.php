@@ -36,25 +36,29 @@ if (isset($update['message'])) {
 
     // --- Команда /status ---
     if ($text === '/status') {
-        $jsonResponse = shell_exec("{$phpBin} {$cliPath} 2>&1");
+        $env  = 'export PATH=/data/data/com.termux/files/usr/bin:$PATH; ';
+        $env .= 'export PREFIX=/data/data/com.termux/files/usr; ';
+        $env .= 'export HOME=/data/data/com.termux/files/home; ';
+        $env .= 'export LD_LIBRARY_PATH=/data/data/com.termux/files/usr/lib; ';
+        $jsonResponse = shell_exec("$env $phpBin $cliPath 2>&1");
 
         if ($jsonResponse !== null && trim($jsonResponse) !== '') {
             $data = json_decode(trim($jsonResponse), true);
 
             if (isset($data['success']) && $data['success'] === true) {
                 $replyText  = "🔋 *Статус аккумулятара:*\n\n";
-                $replyText .= "Зарад батарэі: " . $data['percentage'] . "%\n";
-                $replyText .= "Статус: " . $data['status'] . "\n";
-                $replyText .= "Тэмпература: " . $data['temperature'] . "°C";
+                $replyText .= "Зарад батарэі: " .$data['percentage'] . "%\n";
+                $replyText .= "Статус: " .$data['status'] . "\n";
+                $replyText .= "Тэмпература: " .$data['temperature'] . "°C";
             } else {
-                $errorInfo  = $data['error'] ?? "Вывад скрыпта:\n`" . trim($jsonResponse) . "`";
-                $replyText  = "⚠️ *Памылка пры атрыманні дадзеных:*\n" . $errorInfo;
+                $errorInfo  =$data['error'] ?? "Вывад скрыпта:\n`" . trim($jsonResponse) . "`";
+                $replyText  = "⚠️ *Памылка пры атрыманні дадзеных:*\n" .$errorInfo;
             }
         } else {
             $replyText = "❌ Памылка: `shell_exec` вярнуў пусты рэзультат";
         }
 
-        sendTelegramMessage($token, $chatId, $replyText);
+        sendTelegramMessage($token,$chatId, $replyText);
     }
 
     // --- Команды для снимков с камер ---
