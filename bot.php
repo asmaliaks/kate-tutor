@@ -86,8 +86,12 @@ if (isset($update['message'])) {
         $env = 'export PATH=/data/data/com.termux/files/usr/bin:$PATH; ' .
             'export PREFIX=/data/data/com.termux/files/usr; ' .
             'export TMPDIR=/data/data/com.termux/files/usr/tmp; ';
+        try {
+            $output = trim((string)shell_exec($env . 'termux-torch ' . $state . ' 2>&1'));
+        } catch (\Exception $e) {
+            sendTelegramMessage($token, $chatId, $e->getMessage());
+        }
 
-        $output = trim((string)shell_exec($env . 'termux-torch ' . $state . ' 2>&1'));
 
         $replyText = ($state === 'on') ? "💡 Фонарик включен" : "🔦 Фонарик выключен";
         if ($output !== '') {
