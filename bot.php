@@ -203,12 +203,12 @@ function sendTelegramVoice($token, $chatId, $filePath, $caption = '') {
         return false;
     }
 
-    $url = "https://api.telegram.org/bot{$token}/sendVoice";
     $ch = curl_init();
 
+    $url = "https://api.telegram.org/bot{$token}/sendAudio";
     $postFields = [
         'chat_id'    => $chatId,
-        'voice'      => new CURLFile($filePath, 'audio/m4a', 'voice.m4a'),
+        'audio'      => new CURLFile($filePath, 'audio/m4a', 'audio.m4a'),
         'caption'    => $caption,
         'parse_mode' => 'Markdown'
     ];
