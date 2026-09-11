@@ -8,7 +8,11 @@ if (function_exists('fastcgi_finish_request')) {
     fastcgi_finish_request();
 }
 
-$token = "517180739:AAEWhNTDdKMdjQe_mOPXmKaHBUpaMjoqrW4";
+$token = getenv('BOT_TOKEN') ?: ($_ENV['BOT_TOKEN'] ?? null);
+
+if (!$token) {
+    die('Ошибка: Переменная окружения BOT_TOKEN не задана');
+}
 
 $input = file_get_contents('php://input');
 $update = json_decode($input, true);
