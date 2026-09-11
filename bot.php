@@ -83,19 +83,17 @@ if (isset($update['message'])) {
     if ($text === '/light_on' || $text === '/light_off') {
         $state = ($text === '/light_on') ? 'on' : 'off';
 
-        $env = 'export PATH=/data/data/com.termux/files/usr/bin:$PATH; ' .
-            'export PREFIX=/data/data/com.termux/files/usr; ' .
-            'export TMPDIR=/data/data/com.termux/files/usr/tmp; ';
-        try {
-            $output = trim((string)shell_exec($env . 'termux-torch ' . $state . ' 2>&1'));
-        } catch (\Exception $e) {
-            sendTelegramMessage($token, $chatId, $e->getMessage());
-        }
+        $env  = 'export PATH=/data/data/com.termux/files/usr/bin:$PATH; ';
+        $env .= 'export PREFIX=/data/data/com.termux/files/usr; ';
+        $env .= 'export HOME=/data/data/com.termux/files/home; ';
+        $env .= 'export LD_LIBRARY_PATH=/data/data/com.termux/files/usr/lib; ';
 
+        $output = shell_exec($env . 'termux-torch ' . $state . ' 2>&1');
 
         $replyText = ($state === 'on') ? "💡 Фонарик включен" : "🔦 Фонарик выключен";
-        if ($output !== '') {
-            $replyText .= "\n⚠️ Ответ утилиты: " . $output;
+
+        if ($output !== null && trim($output) !== '') {
+            $replyText .= "\n⚠️ Ответ утилиты: `" . trim($output) . "`";
         }
 
         sendTelegramMessage($token, $chatId, $replyText);
