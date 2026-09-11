@@ -17,15 +17,14 @@ $output = shell_exec($command);
 if ($output === null) {
     echo json_encode([
         'success' => false,
-        'error'   => 'Не атрымалася выканаць каманду shell_exec.'
+        'error'   => 'Не атрымалася выканаць shell_exec.'
     ], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
 $batteryData = json_decode($output, true);
 
-if (json_last_error() === JSON_ERROR_NONE) {
-    // Успешно получили данные от termux-battery-status
+if (json_last_error() === JSON_ERROR_NONE && is_array($batteryData)) {
     echo json_encode([
         'success'     => true,
         'percentage'  => $batteryData['percentage'] ?? 0,
@@ -33,9 +32,8 @@ if (json_last_error() === JSON_ERROR_NONE) {
         'temperature' => $batteryData['temperature'] ?? 0
     ], JSON_UNESCAPED_UNICODE);
 } else {
-    // Если команда вернула ошибку вместо JSON
     echo json_encode([
         'success' => false,
-        'error'   => 'Памылка выканання каманды: ' . $output
+        'error'   => 'Памылка выканання каманды: ' . trim($output)
     ], JSON_UNESCAPED_UNICODE);
 }
