@@ -99,7 +99,6 @@ if (isset($update['message'])) {
         sendTelegramMessage($token, $chatId, $replyText);
     }
 
-     // --- Разовая инициализация меню ---
     if ($text === '/init_menu') {
         $cmds = [
             ['command' => 'status', 'description' => 'Battery status'],
@@ -113,11 +112,14 @@ if (isset($update['message'])) {
             ['command' => 'light_off', 'description' => 'Turn off flashlight']
         ];
 
-        file_get_contents("https://api.telegram.org/bot{$token}/deleteMyCommands");
-        file_get_contents("https://api.telegram.org/bot{\(token}/setMyCommands?commands=" . urlencode(json_encode($cmds)));
-        file_get_contents("https://api.telegram.org/bot{$token}/setChatMenuButton?menu_button=" . urlencode(json_encode(['type' => 'commands'])));
+        $scope = json_encode(['type' => 'all_private_chats']);
 
-        sendTelegramMessage($token,$chatId, "✅ Меню обновлено!");
+        file_get_contents("https://api.telegram.org/bot$token/deleteMyCommands");
+        file_get_contents("https://api.telegram.org/bot$token/deleteMyCommands?scope=" . urlencode($scope));
+
+        $res = file_get_contents("https://api.telegram.org/bot$token/setMyCommands?commands=" . urlencode(json_encode($cmds)) . "&scope=" . urlencode($scope));
+
+        sendTelegramMessage($token,$chatId, "Ответ API: " . $res);
     }
 }
 
