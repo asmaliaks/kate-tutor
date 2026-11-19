@@ -1,25 +1,133 @@
+<style>
+    .for-whom-intro {
+        margin-bottom: 1.25rem;
+        color: #334155;
+        font-size: 1.05rem;
+        line-height: 1.7;
+    }
+
+    .for-whom-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+    }
+
+    .for-whom-item {
+        display: flex;
+        gap: 0.9rem;
+        padding: 1.1rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        background: #f8fafc;
+    }
+
+    .for-whom-icon {
+        display: grid;
+        place-items: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        flex: 0 0 2.5rem;
+        border-radius: 50%;
+        background: #e0e7ff;
+        color: var(--primary-dark);
+    }
+
+    .for-whom-item h3 {
+        margin-bottom: 0.3rem;
+        color: var(--text-main);
+        font-size: 1rem;
+        line-height: 1.4;
+    }
+
+    .for-whom-item p {
+        color: #475569;
+        font-size: 0.93rem;
+        line-height: 1.55;
+    }
+
+    @media (max-width: 640px) {
+        .for-whom-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
 <section id="for-whom">
-    <h2 class="section-title t" data-en="For whom" data-ru="Кому подойдут эти курсы" data-pl="Dla kogo to pasuje">Кому подойдут эти курсы</h2>
+    <h2 class="section-title t"
+        data-en="Who are these courses for?"
+        data-ru="Кому подойдут эти курсы"
+        data-pl="Dla kogo są te kursy?">Кому подойдут эти курсы</h2>
     <div class="about-card">
         <div>
-            <p class="about-text t"
-               data-en=""
-               data-ru="Этот формат создан для вас, если вы:
-                Знаете грамматику, но молчите. В голове есть правила и слова, но в разговоре возникает ступор и страх ошибиться.
-                Устали от академических учебников. Хочется живого языка, актуального сленга и тем, которые действительно интересно обсуждать.
-                Любите хорошее кино и сериалы. Вы и так проводите вечера за просмотром новинок — пора превратить это хобби в мощный инструмент прокачки языка.
-                Хотите понимать носителей на слух. Беглая речь, эмоции, шутки и акценты перестанут сливаться в «белый шум»."
-               data-pl="">
-                Этот формат создан для вас, если вы:
-                Знаете грамматику, но молчите. В голове есть правила и слова, но в разговоре возникает ступор и страх ошибиться.
-                Устали от академических учебников. Хочется живого языка, актуального сленга и тем, которые действительно интересно обсуждать.
-                Любите хорошее кино и сериалы. Вы и так проводите вечера за просмотром новинок — пора превратить это хобби в мощный инструмент прокачки языка.
-                Хотите понимать носителей на слух. Беглая речь, эмоции, шутки и акценты перестанут сливаться в «белый шум».
+            <p class="for-whom-intro t"
+               data-en="This format is for you if you'd like to make English a natural part of your everyday life:"
+               data-ru="Этот формат создан для вас, если вы хотите сделать английский естественной частью своей жизни:"
+               data-pl="Ten format jest dla Ciebie, jeśli chcesz, aby angielski stał się naturalną częścią Twojego życia:">
+                Этот формат создан для вас, если вы хотите сделать английский естественной частью своей жизни:
             </p>
+
+            <div class="for-whom-grid">
+                <article class="for-whom-item">
+                    <span class="for-whom-icon" aria-hidden="true"><i class="fa-solid fa-comments"></i></span>
+                    <div>
+                        <h3 class="t"
+                            data-en="You know grammar but freeze when speaking"
+                            data-ru="Знаете грамматику, но молчите"
+                            data-pl="Znasz gramatykę, ale milkniesz w rozmowie">Знаете грамматику, но молчите</h3>
+                        <p class="t"
+                           data-en="You know the rules and words, but conversations bring hesitation and fear of making mistakes."
+                           data-ru="В голове есть правила и слова, но в разговоре возникает ступор и страх ошибиться."
+                           data-pl="Znasz zasady i słownictwo, ale podczas rozmowy pojawia się blokada i obawa przed błędami.">В голове есть правила и слова, но в разговоре возникает ступор и страх ошибиться.</p>
+                    </div>
+                </article>
+
+                <article class="for-whom-item">
+                    <span class="for-whom-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span>
+                    <div>
+                        <h3 class="t"
+                            data-en="You're tired of textbook English"
+                            data-ru="Устали от академических учебников"
+                            data-pl="Masz dość języka z podręczników">Устали от академических учебников</h3>
+                        <p class="t"
+                           data-en="You want natural language, current slang, and topics that are genuinely interesting to discuss."
+                           data-ru="Хочется живого языка, актуального сленга и тем, которые действительно интересно обсуждать."
+                           data-pl="Chcesz poznawać żywy język, współczesny slang i tematy, o których naprawdę ciekawie się rozmawia.">Хочется живого языка, актуального сленга и тем, которые действительно интересно обсуждать.</p>
+                    </div>
+                </article>
+
+                <article class="for-whom-item">
+                    <span class="for-whom-icon" aria-hidden="true"><i class="fa-solid fa-film"></i></span>
+                    <div>
+                        <h3 class="t"
+                            data-en="You love films and TV series"
+                            data-ru="Любите хорошее кино и сериалы"
+                            data-pl="Lubisz dobre filmy i seriale">Любите хорошее кино и сериалы</h3>
+                        <p class="t"
+                           data-en="Turn the shows you already enjoy into a fun, effective way to improve your English."
+                           data-ru="Вы и так проводите вечера за просмотром новинок — пора превратить это хобби в мощный инструмент прокачки языка."
+                           data-pl="Zamień seriale, które już oglądasz, w przyjemny i skuteczny sposób na rozwijanie angielskiego.">Вы и так проводите вечера за просмотром новинок — пора превратить это хобби в мощный инструмент прокачки языка.</p>
+                    </div>
+                </article>
+
+                <article class="for-whom-item">
+                    <span class="for-whom-icon" aria-hidden="true"><i class="fa-solid fa-headphones"></i></span>
+                    <div>
+                        <h3 class="t"
+                            data-en="You want to understand native speakers"
+                            data-ru="Хотите понимать носителей на слух"
+                            data-pl="Chcesz rozumieć native speakerów">Хотите понимать носителей на слух</h3>
+                        <p class="t"
+                           data-en="Fast speech, emotion, jokes, and accents will stop sounding like one continuous blur."
+                           data-ru="Беглая речь, эмоции, шутки и акценты перестанут сливаться в «белый шум»."
+                           data-pl="Szybka mowa, emocje, żarty i akcenty przestaną zlewać się w niezrozumiały szum.">Беглая речь, эмоции, шутки и акценты перестанут сливаться в «белый шум».</p>
+                    </div>
+                </article>
+            </div>
+
             <div class="badge-list">
-                <span class="badge">уровень B1-B2+</span>
-                <span class="badge">занятия в Zoom</span>
-                <span class="badge">Американский английский</span>
+                <span class="badge t" data-en="B1–B2+ level" data-ru="уровень B1–B2+" data-pl="poziom B1–B2+">уровень B1–B2+</span>
+                <span class="badge t" data-en="Online lessons on Zoom" data-ru="занятия в Zoom" data-pl="zajęcia online na Zoomie">занятия в Zoom</span>
+                <span class="badge t" data-en="American English" data-ru="Американский английский" data-pl="Amerykański angielski">Американский английский</span>
             </div>
         </div>
     </div>
