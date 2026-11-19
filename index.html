@@ -8,6 +8,11 @@
   <title>Английский по сериалам</title>
   <meta name="description" content="Изучайте английский по любимым сериалам: живые диалоги, современная лексика, разбор сцен и мини-курсы для уровней A2–B2.">
   <meta name="author" content="Екатерина">
+  <link rel="canonical" href="https://movieclub.edu.pl/ru/">
+  <link rel="alternate" hreflang="ru" href="https://movieclub.edu.pl/ru/">
+  <link rel="alternate" hreflang="en" href="https://movieclub.edu.pl/en/">
+  <link rel="alternate" hreflang="pl" href="https://movieclub.edu.pl/pl/">
+  <link rel="alternate" hreflang="x-default" href="https://movieclub.edu.pl/ru/">
 
   <!-- FontAwesome & Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -118,6 +123,7 @@
     }
 
     .lang-btn {
+      display: inline-block;
       border: none;
       background: transparent;
       color: var(--text-muted);
@@ -127,6 +133,7 @@
       font-size: 0.85rem;
       cursor: pointer;
       transition: var(--transition);
+      text-decoration: none;
     }
 
     .lang-btn.active {
@@ -467,9 +474,9 @@
   </nav>
 
   <div class="lang-switcher">
-    <button class="lang-btn" onclick="changeLang('en')">EN</button>
-    <button class="lang-btn active" onclick="changeLang('ru')">RU</button>
-    <button class="lang-btn" onclick="changeLang('pl')">PL</button>
+    <a class="lang-btn" data-lang="en" href="/en/" hreflang="en" lang="en">EN</a>
+    <a class="lang-btn active" data-lang="ru" href="/ru/" hreflang="ru" lang="ru">RU</a>
+    <a class="lang-btn" data-lang="pl" href="/pl/" hreflang="pl" lang="pl">PL</a>
   </div>
 </div>
 
@@ -496,9 +503,9 @@
 <!-- СКТИПТ ДИНАМИЧЕСКОЙ ЗАГРУЗКИ И ПЕРЕКЛЮЧЕНИЯ ЯЗЫКОВ -->
 <script>
   const sections = [
-    'sections/for-whom.html',
-    'sections/serials_1.html',
-    'sections/about.html'
+    '/sections/for-whom.html',
+    '/sections/serials_1.html',
+    '/sections/about.html'
     // 'sections/certificates.html',
     // 'sections/cases.html'
   ];
@@ -512,6 +519,7 @@
       );
 
       mainContainer.innerHTML = loadedHtml.join('');
+      changeLang(document.documentElement.lang);
       initScrollObserver();
       initSerialsStage();
     } catch (err) {
@@ -525,7 +533,7 @@
       description: "Изучайте английский по любимым сериалам: живые диалоги, современная лексика, разбор сцен и мини-курсы для уровней A2–B2."
     },
     en: {
-      title: "Learn English with TV Seriesr",
+      title: "Learn English with TV Series",
       description: "Learn practical English with TV series through real dialogue, modern vocabulary, scene analysis, and mini-courses for A2–B2 learners."
     },
     pl: {
@@ -541,7 +549,7 @@
     });
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.getAttribute('onclick').includes(`'${lang}'`));
+      btn.classList.toggle('active', btn.dataset.lang === lang);
     });
 
     if (seoData[lang]) {
