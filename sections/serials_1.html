@@ -1,0 +1,409 @@
+<style>
+  .serials-stage {
+    background: var(--bg-card);
+    border: 1px solid #f1f5f9;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .serials-stage-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 230px;
+    min-height: 430px;
+  }
+
+  .serials-stage-screen {
+    position: relative;
+    min-height: 430px;
+    background: #0f172a;
+    overflow: hidden;
+  }
+
+  .serials-stage-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+  }
+
+  .serials-stage-slide.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .serials-stage-img {
+    width: 100%;
+    height: 100%;
+    min-height: 430px;
+    object-fit: contain;
+    object-position: center;
+    background: #0f172a;
+  }
+
+  .serials-stage-copy {
+    position: absolute;
+    inset: auto 0 0;
+    padding: 5rem 1.5rem 1.5rem;
+    color: #ffffff;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.86) 42%, rgba(15, 23, 42, 0.96) 100%);
+  }
+
+  .serials-stage-title {
+    font-size: clamp(1.45rem, 3vw, 2.2rem);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+
+  .serials-stage-meta {
+    color: #c7d2fe;
+    font-size: 0.92rem;
+    font-weight: 700;
+    margin-bottom: 0.65rem;
+  }
+
+  .serials-stage-desc {
+    max-width: 560px;
+    color: #e2e8f0;
+    font-size: 0.98rem;
+  }
+
+  .serials-stage-actions {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 3;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .serials-stage-btn {
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(255, 255, 255, 0.26);
+    border-radius: 50%;
+    background: rgba(15, 23, 42, 0.56);
+    color: #ffffff;
+    cursor: pointer;
+    transition: var(--transition);
+    backdrop-filter: blur(8px);
+  }
+
+  .serials-stage-btn:hover {
+    background: rgba(99, 102, 241, 0.86);
+  }
+
+  .serials-stage-list {
+    display: grid;
+    align-content: stretch;
+    gap: 0;
+    background: #f8fafc;
+    border-left: 1px solid #e2e8f0;
+    overflow-y: auto;
+  }
+
+  .serials-stage-tab {
+    display: grid;
+    grid-template-columns: 58px minmax(0, 1fr);
+    gap: 0.75rem;
+    align-items: center;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid #e2e8f0;
+    background: transparent;
+    padding: 0.45rem 0.85rem;
+    text-align: left;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .serials-stage-tab:last-child {
+    border-bottom: 0;
+  }
+
+  .serials-stage-tab.is-active,
+  .serials-stage-tab:hover {
+    background: #eef2ff;
+  }
+
+  .serials-stage-thumb {
+    width: 58px;
+    height: 64px;
+    border-radius: 10px;
+    object-fit: contain;
+    background: #0f172a;
+  }
+
+  .serials-stage-name {
+    display: block;
+    color: var(--text-main);
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .serials-stage-level {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    line-height: 1.35;
+    margin-top: 0.25rem;
+  }
+
+  @media (max-width: 760px) {
+    .serials-stage-layout {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+
+    .serials-stage-screen,
+    .serials-stage-img {
+      min-height: 420px;
+    }
+
+    .serials-stage-list {
+      grid-template-columns: repeat(6, minmax(132px, 1fr));
+      overflow-x: auto;
+      overflow-y: hidden;
+      border-left: 0;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .serials-stage-tab {
+      grid-template-columns: 44px minmax(0, 1fr);
+      border-bottom: 0;
+      border-right: 1px solid #e2e8f0;
+      min-width: 150px;
+    }
+
+    .serials-stage-thumb {
+      width: 44px;
+      height: 56px;
+      border-radius: 8px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .serials-stage-screen,
+    .serials-stage-img {
+      min-height: 390px;
+    }
+
+    .serials-stage-copy {
+      padding: 4.5rem 1rem 1.15rem;
+    }
+  }
+</style>
+
+<section id="serials-stage">
+  <h2 class="section-title t"
+      data-en="Series spotlight"
+      data-ru="Сериал в фокусе"
+      data-pl="Serial w centrum uwagi">
+    Сериал в фокусе
+  </h2>
+
+  <div class="serials-stage" data-serials-stage>
+    <div class="serials-stage-layout">
+      <div class="serials-stage-screen">
+        <div class="serials-stage-actions" aria-label="Навигация по сериалам">
+          <button class="serials-stage-btn" type="button" data-stage-prev aria-label="Предыдущий сериал">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button class="serials-stage-btn" type="button" data-stage-next aria-label="Следующий сериал">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <article class="serials-stage-slide is-active" data-stage-slide>
+          <img class="serials-stage-img"
+               src="images/black_mirror.jpg"
+               alt="Black Mirror">
+          <div class="serials-stage-copy">
+            <h3 class="serials-stage-title">Black Mirror</h3>
+            <p class="serials-stage-meta t"
+               data-en="Science fiction, drama · B1+ · 10 lessons"
+               data-ru="Научная фантастика, драма · B1 и выше · 10 занятий"
+               data-pl="Science fiction, dramat · B1+ · 10 lekcji">
+              Научная фантастика, драма · B1 и выше · 10 занятий
+            </p>
+            <p class="serials-stage-desc t"
+               data-en="Future technologies, moral dilemmas, and the influence of social media on our lives."
+               data-ru="Технологии будущего, моральные дилеммы и влияние соцсетей на нашу жизнь."
+               data-pl="Technologie przyszłości, dylematy moralne i wpływ social mediów na nasze życie.">
+              Технологии будущего, моральные дилеммы и влияние соцсетей на нашу жизнь.
+            </p>
+          </div>
+        </article>
+
+        <article class="serials-stage-slide" data-stage-slide>
+          <img class="serials-stage-img"
+               src="images/big_little_lies.jpg"
+               alt="Big Little Lies">
+          <div class="serials-stage-copy">
+            <h3 class="serials-stage-title">Big Little Lies</h3>
+            <p class="serials-stage-meta t"
+               data-en="Sitcom, everyday English · A2-B1 · 8 lessons"
+               data-ru="Ситком, повседневный английский · A2-B1 · 8 занятий"
+               data-pl="Sitcom, codzienny angielski · A2-B1 · 8 lekcji">
+              Ситком, повседневный английский · A2-B1 · 8 занятий
+            </p>
+            <p class="serials-stage-desc t"
+               data-en="Small talk, jokes, relationships, and natural phrases for casual conversations."
+               data-ru="Small talk, шутки, отношения и живые фразы для неформального общения."
+               data-pl="Small talk, żarty, relacje i naturalne zwroty do rozmów nieformalnych.">
+              Small talk, шутки, отношения и живые фразы для неформального общения.
+            </p>
+          </div>
+        </article>
+
+        <article class="serials-stage-slide" data-stage-slide>
+          <img class="serials-stage-img"
+               src="images/beef.jpg"
+               alt="Beef">
+          <div class="serials-stage-copy">
+            <h3 class="serials-stage-title">Beef</h3>
+            <p class="serials-stage-meta t"
+               data-en="Adventure, mystery · B1-B2 · 9 lessons"
+               data-ru="Приключения, мистика · B1-B2 · 9 занятий"
+               data-pl="Przygoda, tajemnica · B1-B2 · 9 lekcji">
+              Приключения, мистика · B1-B2 · 9 занятий
+            </p>
+            <p class="serials-stage-desc t"
+               data-en="Teen slang, emotions, suspense, and vocabulary for describing unusual events."
+               data-ru="Подростковый сленг, эмоции, саспенс и лексика для описания необычных событий."
+               data-pl="Młodzieżowy slang, emocje, napięcie i słownictwo do opisywania niezwykłych wydarzeń.">
+              Подростковый сленг, эмоции, саспенс и лексика для описания необычных событий.
+            </p>
+          </div>
+        </article>
+
+        <article class="serials-stage-slide" data-stage-slide>
+          <img class="serials-stage-img"
+               src="images/cougar_town.jpg"
+               alt="Cougar Town">
+          <div class="serials-stage-copy">
+            <h3 class="serials-stage-title">Cougar Town</h3>
+            <p class="serials-stage-meta t"
+               data-en="Historical drama · B2+ · 10 lessons"
+               data-ru="Историческая драма · B2 и выше · 10 занятий"
+               data-pl="Dramat historyczny · B2+ · 10 lekcji">
+              Историческая драма · B2 и выше · 10 занятий
+            </p>
+            <p class="serials-stage-desc t"
+               data-en="Formal English, diplomacy, British pronunciation, and discussion of historical choices."
+               data-ru="Формальный английский, дипломатия, британское произношение и обсуждение исторических решений."
+               data-pl="Formalny angielski, dyplomacja, brytyjska wymowa i rozmowy o historycznych decyzjach.">
+              Формальный английский, дипломатия, британское произношение и обсуждение исторических решений.
+            </p>
+          </div>
+        </article>
+
+        <article class="serials-stage-slide" data-stage-slide>
+          <img class="serials-stage-img"
+               src="images/paradise.jpg"
+               alt="Paradise">
+          <div class="serials-stage-copy">
+            <h3 class="serials-stage-title">Paradise</h3>
+            <p class="serials-stage-meta t"
+               data-en="Drama, thriller · B1-B2 · 9 lessons"
+               data-ru="Драма, триллер · B1-B2 · 9 занятий"
+               data-pl="Dramat, thriller · B1-B2 · 9 lekcji">
+              Драма, триллер · B1-B2 · 9 занятий
+            </p>
+            <p class="serials-stage-desc t"
+               data-en="Mysteries, secrets, and expressive vocabulary for describing suspense."
+               data-ru="Тайны, секреты и выразительная лексика для описания напряжённых событий."
+               data-pl="Tajemnice, sekrety i wyraziste słownictwo do opisów pełnych napięcia.">
+              Тайны, секреты и выразительная лексика для описания напряжённых событий.
+            </p>
+          </div>
+        </article>
+
+        <article class="serials-stage-slide" data-stage-slide>
+          <img class="serials-stage-img"
+               src="images/you.jpg"
+               alt="You">
+          <div class="serials-stage-copy">
+            <h3 class="serials-stage-title">You</h3>
+            <p class="serials-stage-meta t"
+               data-en="Psychological thriller · B2+ · 10 lessons"
+               data-ru="Психологический триллер · B2 и выше · 10 занятий"
+               data-pl="Thriller psychologiczny · B2+ · 10 lekcji">
+              Психологический триллер · B2 и выше · 10 занятий
+            </p>
+            <p class="serials-stage-desc t"
+               data-en="Inner monologue, relationships, motives, and advanced vocabulary for discussion."
+               data-ru="Внутренний монолог, отношения, мотивы и продвинутая лексика для обсуждения."
+               data-pl="Monolog wewnętrzny, relacje, motywacje i słownictwo zaawansowane do dyskusji.">
+              Внутренний монолог, отношения, мотивы и продвинутая лексика для обсуждения.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="serials-stage-list" role="tablist" aria-label="Список сериалов">
+        <button class="serials-stage-tab is-active" type="button" data-stage-tab="0">
+          <img class="serials-stage-thumb"
+               src="images/black_mirror.jpg"
+               alt="">
+          <span>
+            <span class="serials-stage-name">Black Mirror</span>
+            <span class="serials-stage-level">B1+ · 10 занятий</span>
+          </span>
+        </button>
+
+        <button class="serials-stage-tab" type="button" data-stage-tab="1">
+          <img class="serials-stage-thumb"
+               src="images/big_little_lies.jpg"
+               alt="">
+          <span>
+            <span class="serials-stage-name">Big Little Lies</span>
+            <span class="serials-stage-level">A2-B1 · 8 занятий</span>
+          </span>
+        </button>
+
+        <button class="serials-stage-tab" type="button" data-stage-tab="2">
+          <img class="serials-stage-thumb"
+               src="images/beef.jpg"
+               alt="">
+          <span>
+            <span class="serials-stage-name">Beef</span>
+            <span class="serials-stage-level">B1-B2 · 9 занятий</span>
+          </span>
+        </button>
+
+        <button class="serials-stage-tab" type="button" data-stage-tab="3">
+          <img class="serials-stage-thumb"
+               src="images/cougar_town.jpg"
+               alt="">
+          <span>
+            <span class="serials-stage-name">Cougar Town</span>
+            <span class="serials-stage-level">B2+ · 10 занятий</span>
+          </span>
+        </button>
+
+        <button class="serials-stage-tab" type="button" data-stage-tab="4">
+          <img class="serials-stage-thumb"
+               src="images/paradise.jpg"
+               alt="">
+          <span>
+            <span class="serials-stage-name">Paradise</span>
+            <span class="serials-stage-level">B1-B2 · 9 занятий</span>
+          </span>
+        </button>
+
+        <button class="serials-stage-tab" type="button" data-stage-tab="5">
+          <img class="serials-stage-thumb"
+               src="images/you.jpg"
+               alt="">
+          <span>
+            <span class="serials-stage-name">You</span>
+            <span class="serials-stage-level">B2+ · 10 занятий</span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

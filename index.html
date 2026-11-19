@@ -210,6 +210,8 @@
       height: 130px;
       border-radius: 50%;
       object-fit: cover;
+      object-position: center;
+      image-rendering: auto;
       border: 4px solid #ffffff;
       box-shadow: 0 8px 20px rgba(99, 102, 241, 0.2);
       flex-shrink: 0;
@@ -276,6 +278,99 @@
     .card-desc {
       font-size: 0.95rem;
       color: var(--text-muted);
+    }
+
+    .serials-shell {
+      position: relative;
+    }
+
+    .serials-carousel {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(240px, 31%);
+      gap: 1.25rem;
+      overflow-x: auto;
+      padding: 0.25rem 0 1rem;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+      scrollbar-color: #c7d2fe transparent;
+    }
+
+    .serials-carousel::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .serials-carousel::-webkit-scrollbar-thumb {
+      background: #c7d2fe;
+      border-radius: 999px;
+    }
+
+    .serial-card {
+      scroll-snap-align: start;
+      background: var(--bg-card);
+      border: 1px solid #f1f5f9;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .serial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+    }
+
+    .serial-img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+
+    .serial-content {
+      padding: 1rem;
+    }
+
+    .serial-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .serial-meta {
+      color: var(--primary-dark);
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .serial-desc {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    .carousel-controls {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .carousel-btn {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #e2e8f0;
+      border-radius: 50%;
+      background: var(--bg-card);
+      color: var(--primary);
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 8px 18px -12px rgba(15, 23, 42, 0.4);
+    }
+
+    .carousel-btn:hover {
+      background: #eef2ff;
+      border-color: #c7d2fe;
     }
 
     /* --- FOOTER --- */
@@ -347,6 +442,14 @@
         justify-content: center;
       }
 
+      .serials-carousel {
+        grid-auto-columns: minmax(240px, 82%);
+      }
+
+      .carousel-controls {
+        justify-content: center;
+      }
+
       main {
         padding: 1.5rem 1rem;
       }
@@ -359,6 +462,7 @@
 <div class="top-bar">
   <nav class="main-nav">
     <a href="#about" class="nav-link t" data-en="About" data-ru="Обо мне" data-pl="O mnie">Обо мне</a>
+    <a href="#serials" class="nav-link t" data-en="Series" data-ru="Сериалы" data-pl="Seriale">Сериалы</a>
     <a href="#experience" class="nav-link t" data-en="Experience" data-ru="Опыт" data-pl="Doświadczenie">Опыт</a>
     <a href="#certificates" class="nav-link t" data-en="Certificates" data-ru="Сертификаты" data-pl="Certyfikaty">Сертификаты</a>
     <a href="#cases" class="nav-link t" data-en="Cases" data-ru="Успехи" data-pl="Sukcesy">Успехи</a>
@@ -386,9 +490,8 @@
 <footer>
   <p class="footer-text t" data-en="Get in touch or book a trial lesson:" data-ru="Свяжитесь со мной или запишитесь на вводный урок:" data-pl="Skontaktuj się ze mną lub zapisz się na lekcję próbną:">Свяжитесь со мной или запишитесь на вводный урок:</p>
   <div class="social-icons">
-    <a href="#" target="_blank" class="icon-link form" title="Form"><i class="fa-solid fa-file-signature"></i></a>
-    <a href="https://t.me/YOUR_USERNAME" target="_blank" class="icon-link tg" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
-    <a href="https://wa.me/YOUR_NUMBER" target="_blank" class="icon-link wa" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="https://t.me/Katya_teach_me" target="_blank" class="icon-link tg" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+    <a href="https://wa.me/+48791125399" target="_blank" class="icon-link wa" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
   </div>
 </footer>
 
@@ -396,8 +499,8 @@
 <script>
   const sections = [
     'sections/for-whom.html',
+    'sections/serials_1.html',
     'sections/about.html',
-    'sections/experience.html',
     'sections/certificates.html',
     'sections/cases.html'
   ];
@@ -412,15 +515,16 @@
 
       mainContainer.innerHTML = loadedHtml.join('');
       initScrollObserver();
+      initSerialsStage();
     } catch (err) {
       console.error("Ошибка при загрузке секций:", err);
     }
   }
 
   const seoData = {
-    ru: { title: "Репетитор по английскому языку | Екатерина" },
-    en: { title: "English Tutor | Kate" },
-    pl: { title: "Korepetytor języka angielskiego | Katsiaryna" }
+    ru: { title: "Языковой клуб" },
+    en: { title: "Language club" },
+    pl: { title: "Klub jezykowy" }
   };
 
   function changeLang(lang) {
@@ -453,6 +557,47 @@
     }, { threshold: 0.3 });
 
     document.querySelectorAll('section').forEach(section => observer.observe(section));
+  }
+
+  function scrollSerials(direction) {
+    const carousel = document.querySelector('.serials-carousel');
+    if (!carousel) return;
+
+    carousel.scrollBy({
+      left: direction * carousel.clientWidth * 0.85,
+      behavior: 'smooth'
+    });
+  }
+
+  function initSerialsStage() {
+    const root = document.querySelector('[data-serials-stage]');
+    if (!root || root.dataset.ready === 'true') return;
+
+    const slides = [...root.querySelectorAll('[data-stage-slide]')];
+    const tabs = [...root.querySelectorAll('[data-stage-tab]')];
+    const prev = root.querySelector('[data-stage-prev]');
+    const next = root.querySelector('[data-stage-next]');
+    let activeIndex = 0;
+
+    const setActive = (index) => {
+      activeIndex = (index + slides.length) % slides.length;
+
+      slides.forEach((slide, slideIndex) => {
+        slide.classList.toggle('is-active', slideIndex === activeIndex);
+      });
+
+      tabs.forEach((tab, tabIndex) => {
+        tab.classList.toggle('is-active', tabIndex === activeIndex);
+      });
+    };
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => setActive(Number(tab.dataset.stageTab)));
+    });
+
+    if (prev) prev.addEventListener('click', () => setActive(activeIndex - 1));
+    if (next) next.addEventListener('click', () => setActive(activeIndex + 1));
+    root.dataset.ready = 'true';
   }
 
   document.addEventListener('DOMContentLoaded', loadSections);

@@ -1,18 +1,138 @@
+<style>
+    .about-card {
+        align-items: flex-start;
+    }
+
+    .about-copy {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .about-intro {
+        margin-bottom: 1.25rem;
+        color: #334155;
+        font-size: 1.02rem;
+        line-height: 1.7;
+    }
+
+    .about-credentials {
+        display: grid;
+        gap: 0.9rem;
+    }
+
+    .about-credential {
+        display: grid;
+        grid-template-columns: 2rem minmax(0, 1fr);
+        gap: 0.7rem;
+        align-items: start;
+    }
+
+    .about-credential-icon {
+        display: grid;
+        place-items: center;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        background: #e0e7ff;
+        color: var(--primary-dark);
+        font-size: 0.9rem;
+    }
+
+    .about-credential-title {
+        display: block;
+        margin-bottom: 0.15rem;
+        color: var(--text-main);
+        font-weight: 700;
+        line-height: 1.45;
+    }
+
+    .about-credential-desc {
+        display: block;
+        color: #475569;
+        font-size: 0.94rem;
+        line-height: 1.55;
+    }
+
+    @media (max-width: 700px) {
+        .about-card {
+            align-items: center;
+        }
+
+        .about-copy {
+            width: 100%;
+            text-align: left;
+        }
+    }
+</style>
+
 <section id="about">
     <h2 class="section-title t" data-en="About Me" data-ru="Обо мне" data-pl="O mnie">Обо мне</h2>
     <div class="about-card">
-        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&h=300&fit=crop" alt="Екатерина" class="profile-img">
-        <div>
-            <p class="about-text t"
-               data-en="Hi! I'm Kate. I break language barriers and help students achieve real fluency through practical conversational practice and structured frameworks."
-               data-ru="Привет! Меня зовут Екатерина. Помогаю преодолеть языковой барьер и заговорить свободно с помощью понятной структуры и интенсивной практики."
-               data-pl="Cześć! Mam na imię Katsiaryna. Pomagam przełamać barierę językową i osiągnąć płynność dzięki praktycznym konwersacjom i jasnej strukturze.">
-                Привет! Меня зовут Екатерина. Помогаю преодолеть языковой барьер и заговорить свободно с помощью понятной структуры и интенсивной практики.
+        <img src="images/kate_image_clean.jpg?v=1" alt="Екатерина" class="profile-img" decoding="async">
+        <div class="about-copy">
+            <p class="about-intro t"
+               data-en="Hi! I'm Kate, your guide to real-life English. I help people overcome the language barrier by immersing them in context and sparking genuine interest in the conversation."
+               data-ru="Привет! Я Катя — ваш проводник в мир живого английского. Помогаю преодолеть языковой барьер через погружение в контекст и искренний интерес к теме разговора."
+               data-pl="Cześć! Jestem Kate — pomogę Ci wejść w świat naturalnego angielskiego. Pomagam przełamać barierę językową dzięki nauce w kontekście i autentycznemu zainteresowaniu tematem rozmowy.">
+                Привет! Я Катя — ваш проводник в мир живого английского. Помогаю преодолеть языковой барьер через погружение в контекст и искренний интерес к теме разговора.
             </p>
-            <div class="badge-list">
-                <span class="badge">5+ Years Exp</span>
-                <span class="badge">IELTS 8.5</span>
-                <span class="badge">TEFL/TESOL</span>
+
+            <div class="about-credentials">
+                <div class="about-credential">
+                    <span class="about-credential-icon" aria-hidden="true"><i class="fa-solid fa-graduation-cap"></i></span>
+                    <p>
+                        <span class="about-credential-title t"
+                              data-en="Specialist education"
+                              data-ru="Профильное образование"
+                              data-pl="Wykształcenie kierunkowe">Профильное образование</span>
+                        <span class="about-credential-desc t"
+                              data-en="I hold a degree in teaching foreign languages."
+                              data-ru="Диплом преподавателя иностранных языков."
+                              data-pl="Mam dyplom nauczycielki języków obcych.">Диплом преподавателя иностранных языков.</span>
+                    </p>
+                </div>
+
+                <div class="about-credential">
+                    <span class="about-credential-icon" aria-hidden="true"><i class="fa-solid fa-certificate"></i></span>
+                    <p>
+                        <span class="about-credential-title t"
+                              data-en="International standard — Cambridge CELTA"
+                              data-ru="Международный стандарт — Cambridge CELTA"
+                              data-pl="Międzynarodowy standard — Cambridge CELTA">Международный стандарт — Cambridge CELTA</span>
+                        <span class="about-credential-desc t"
+                              data-en="The course follows modern communicative methods, so you do most of the speaking."
+                              data-ru="Уроки строятся по современным коммуникативным методикам, поэтому большую часть времени говорите вы."
+                              data-pl="Zajęcia opierają się na nowoczesnych metodach komunikacyjnych, dzięki czemu to Ty mówisz przez większość lekcji.">Уроки строятся по современным коммуникативным методикам, поэтому большую часть времени говорите вы.</span>
+                    </p>
+                </div>
+
+                <div class="about-credential">
+                    <span class="about-credential-icon" aria-hidden="true"><i class="fa-solid fa-clock"></i></span>
+                    <p>
+                        <span class="about-credential-title t"
+                              data-en="10 years of experience"
+                              data-ru="10 лет опыта"
+                              data-pl="10 lat doświadczenia">10 лет опыта</span>
+                        <span class="about-credential-desc t"
+                              data-en="I understand the challenges learners face at B1–B2 and know how to bring passive vocabulary into active use."
+                              data-ru="Знаю, с какими трудностями сталкиваются студенты на уровнях B1–B2, и умею мягко переводить пассивный словарный запас в активный."
+                              data-pl="Znam trudności osób na poziomach B1–B2 i wiem, jak pomóc im swobodnie korzystać ze słownictwa, które dotąd rozumiały biernie.">Знаю, с какими трудностями сталкиваются студенты на уровнях B1–B2, и умею мягко переводить пассивный словарный запас в активный.</span>
+                    </p>
+                </div>
+
+                <div class="about-credential">
+                    <span class="about-credential-icon" aria-hidden="true"><i class="fa-solid fa-comments"></i></span>
+                    <p>
+                        <span class="about-credential-title t"
+                              data-en="American English"
+                              data-ru="Американский английский"
+                              data-pl="Amerykański angielski">Американский английский</span>
+                        <span class="about-credential-desc t"
+                              data-en="I'll help you get used to the natural pronunciation, intonation, and rhythm of native speakers."
+                              data-ru="Помогу привыкнуть к естественному произношению, интонациям и ритму речи носителей."
+                              data-pl="Pomogę Ci oswoić się z naturalną wymową, intonacją i rytmem wypowiedzi rodzimych użytkowników języka.">Помогу привыкнуть к естественному произношению, интонациям и ритму речи носителей.</span>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
