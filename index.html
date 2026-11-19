@@ -543,6 +543,8 @@
   };
 
   function changeLang(lang) {
+    if (!seoData[lang]) return;
+
     document.querySelectorAll('.t').forEach(el => {
       const text = el.getAttribute(`data-${lang}`);
       if (text) el.textContent = text;
@@ -552,14 +554,37 @@
       btn.classList.toggle('active', btn.dataset.lang === lang);
     });
 
-    if (seoData[lang]) {
-      document.title = seoData[lang].title;
-      document.querySelector('meta[name="description"]')
-        .setAttribute('content', seoData[lang].description);
-    }
+    document.title = seoData[lang].title;
+    document.querySelector('meta[name="description"]')
+      .setAttribute('content', seoData[lang].description);
 
     document.documentElement.lang = lang;
+    document.querySelector('link[rel="canonical"]')
+      .setAttribute('href', `https://movieclub.edu.pl/${lang}/`);
   }
+
+  function getLocaleFromPath() {
+    const match = window.location.pathname.match(/^\/(ru|en|pl)\/?$/);
+    return match ? match[1] : 'ru';
+  }
+
+  document.addEventListener('click', (event) => {
+    const languageLink = event.target.closest('.lang-switcher a[data-lang]');
+    if (!languageLink || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+    event.preventDefault();
+    const lang = languageLink.dataset.lang;
+    changeLang(lang);
+    window.history.pushState({ lang }, '', `/${lang}/`);
+  });
+
+  window.addEventListener('popstate', () => {
+    changeLang(getLocaleFromPath());
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    changeLang(getLocaleFromPath());
+  });
 
   function initScrollObserver() {
     const observer = new IntersectionObserver((entries) => {
