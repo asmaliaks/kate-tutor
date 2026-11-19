@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- SEO Meta Tags -->
-  <title>Репетитор по английскому языку | Екатерина</title>
-  <meta name="description" content="Индивидуальные уроки английского языка онлайн для взрослых и детей с Екатериной.">
+  <title>Английский по сериалам</title>
+  <meta name="description" content="Изучайте английский по любимым сериалам: живые диалоги, современная лексика, разбор сцен и мини-курсы для уровней A2–B2.">
   <meta name="author" content="Екатерина">
 
   <!-- FontAwesome & Google Fonts -->
@@ -522,9 +522,18 @@
   }
 
   const seoData = {
-    ru: { title: "Языковой клуб" },
-    en: { title: "Language club" },
-    pl: { title: "Klub jezykowy" }
+    ru: {
+      title: "Английский по сериалам",
+      description: "Изучайте английский по любимым сериалам: живые диалоги, современная лексика, разбор сцен и мини-курсы для уровней A2–B2."
+    },
+    en: {
+      title: "Learn English with TV Seriesr",
+      description: "Learn practical English with TV series through real dialogue, modern vocabulary, scene analysis, and mini-courses for A2–B2 learners."
+    },
+    pl: {
+      title: "Angielski z seriali",
+      description: "Ucz się praktycznego angielskiego z seriali: naturalne dialogi, współczesne słownictwo, analiza scen i mini-kursy dla poziomów A2–B2."
+    }
   };
 
   function changeLang(lang) {
@@ -539,6 +548,8 @@
 
     if (seoData[lang]) {
       document.title = seoData[lang].title;
+      document.querySelector('meta[name="description"]')
+        .setAttribute('content', seoData[lang].description);
     }
 
     document.documentElement.lang = lang;
