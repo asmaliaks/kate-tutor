@@ -31,12 +31,42 @@ $escape = static function (string $value): string {
 $title = $escape($pages[$locale]['title']);
 $description = $escape($pages[$locale]['description']);
 $canonical = 'https://movieclub.edu.pl/' . $locale . '/';
+$ogLocales = [
+    'ru' => 'ru_RU',
+    'en' => 'en_US',
+    'pl' => 'pl_PL',
+];
+$ogLocale = $ogLocales[$locale];
 
 $html = str_replace('<html lang="ru">', '<html lang="' . $locale . '">', $html);
 $html = preg_replace('~<title>.*?</title>~s', '<title>' . $title . '</title>', $html, 1);
 $html = preg_replace(
     '~<meta name="description" content="[^"]*">~',
     '<meta name="description" content="' . $description . '">',
+    $html,
+    1
+);
+$html = preg_replace(
+    '~<meta property="og:title" content="[^"]*">~',
+    '<meta property="og:title" content="' . $title . '">',
+    $html,
+    1
+);
+$html = preg_replace(
+    '~<meta property="og:description" content="[^"]*">~',
+    '<meta property="og:description" content="' . $description . '">',
+    $html,
+    1
+);
+$html = preg_replace(
+    '~<meta property="og:url" content="[^"]*">~',
+    '<meta property="og:url" content="' . $canonical . '">',
+    $html,
+    1
+);
+$html = preg_replace(
+    '~<meta property="og:locale" content="[^"]*">~',
+    '<meta property="og:locale" content="' . $ogLocale . '">',
     $html,
     1
 );

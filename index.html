@@ -8,6 +8,15 @@
   <title>Английский по сериалам</title>
   <meta name="description" content="Изучайте английский по любимым сериалам: живые диалоги, современная лексика, разбор сцен и мини-курсы для уровней A2–B2.">
   <meta name="author" content="Екатерина">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MovieClub">
+  <meta property="og:title" content="Английский по сериалам">
+  <meta property="og:description" content="Изучайте английский по любимым сериалам: живые диалоги, современная лексика, разбор сцен и мини-курсы для уровней A2–B2.">
+  <meta property="og:url" content="https://movieclub.edu.pl/ru/">
+  <meta property="og:locale" content="ru_RU">
+
   <link rel="canonical" href="https://movieclub.edu.pl/ru/">
   <link rel="alternate" hreflang="ru" href="https://movieclub.edu.pl/ru/">
   <link rel="alternate" hreflang="en" href="https://movieclub.edu.pl/en/">
@@ -530,15 +539,18 @@
   const seoData = {
     ru: {
       title: "Английский по сериалам",
-      description: "Изучайте английский по любимым сериалам: живые диалоги, современная лексика, разбор сцен и мини-курсы для уровней A2–B2."
+      description: "Изучайте английский по любимым сериалам: живые диалоги, современная лексика, разбор сцен и мини-курсы для уровней A2–B2.",
+      ogLocale: "ru_RU"
     },
     en: {
       title: "Learn English with TV Series",
-      description: "Learn practical English with TV series through real dialogue, modern vocabulary, scene analysis, and mini-courses for A2–B2 learners."
+      description: "Learn practical English with TV series through real dialogue, modern vocabulary, scene analysis, and mini-courses for A2–B2 learners.",
+      ogLocale: "en_US"
     },
     pl: {
       title: "Angielski z seriali",
-      description: "Ucz się praktycznego angielskiego z seriali: naturalne dialogi, współczesne słownictwo, analiza scen i mini-kursy dla poziomów A2–B2."
+      description: "Ucz się praktycznego angielskiego z seriali: naturalne dialogi, współczesne słownictwo, analiza scen i mini-kursy dla poziomów A2–B2.",
+      ogLocale: "pl_PL"
     }
   };
 
@@ -557,6 +569,14 @@
     document.title = seoData[lang].title;
     document.querySelector('meta[name="description"]')
       .setAttribute('content', seoData[lang].description);
+    document.querySelector('meta[property="og:title"]')
+      .setAttribute('content', seoData[lang].title);
+    document.querySelector('meta[property="og:description"]')
+      .setAttribute('content', seoData[lang].description);
+    document.querySelector('meta[property="og:url"]')
+      .setAttribute('content', `https://movieclub.edu.pl/${lang}/`);
+    document.querySelector('meta[property="og:locale"]')
+      .setAttribute('content', seoData[lang].ogLocale);
 
     document.documentElement.lang = lang;
     document.querySelector('link[rel="canonical"]')
